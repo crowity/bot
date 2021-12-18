@@ -12,7 +12,7 @@ var aktivite = [
    console.log(`${client.user.username} başarıyla giriş yaptı.`);
 
 
-
+// nerde kodluyorsun
 
 }
 

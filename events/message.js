@@ -32,13 +32,12 @@ module.exports = message => {
             timestamp.get(message.author.id) + cooldownAmount;
         if (expirationTime > now) {
             const timeLeft = (expirationTime - now) / 1000
-            le       
+            let timeleft2 = `${timeLeft}`  
+     timeleft2 = timeleft2.replace(timeleft2.slice(3), "")     
      const embed = new Discord.MessageEmbed() 
                 .setTitle("Cooldown aşımı tespit edildi")
                 .setDescription(
-                    `Bu komudu tekrar kullanabilmek için ${parseInt(
-                        timeLeft
-                    )} saniye bekleyin.`
+                    `Bu komudu tekrar kullanabilmek için ${timeleft2} saniye bekleyin.`
                 );
             return message.channel.send({ embeds: [embed] });
         }
