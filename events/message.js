@@ -10,7 +10,7 @@ module.exports = message => {
     const command =
         client.commands.get(commandName) ||
         client.commands.find(
-            (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
+            (cmd) => cmd.conf.aliases && cmd.conf.aliases.includes(commandName)
         );
     if (!message.content.startsWith(prefix) || !command) return;
     if (command.guildOnly && message.channel.type == "DM")
@@ -19,24 +19,24 @@ module.exports = message => {
         );
 
 
-    if (!cooldowns.has(command.name)) {
-        cooldowns.set(command.name, new Discord.Collection());
+    if (!cooldowns.has(command.help.name)) {
+        cooldowns.set(command.help.name, new Discord.Collection());
     }
 
-    const timestamp = cooldowns.get(command.name);
+    const timestamp = cooldowns.get(command.help.name);
     const now = Date.now();
-    console.log(now);
-    const cooldownAmount = (command.cooldown || 3) * 1000;
+    const cooldownAmount = (command.cooldown || 2) * 1000;
 
     if (timestamp.has(message.author.id)) {
         const expirationTime =
             timestamp.get(message.author.id) + cooldownAmount;
         if (expirationTime > now) {
             const timeLeft = (expirationTime - now) / 1000;
+            timeleft = timeleft.split()
             const embed = new Discord.MessageEmbed()
                 .setTitle("Cooldown aşımı tespit edildi")
                 .setDescription(
-                    `Bu komudu tekrar kullanabilmek için ${parseInt(
+                    `Bu komudu tekrar kullanabilmek için ${(
                         timeLeft
                     )} saniye bekleyin.`
                 );
@@ -49,7 +49,7 @@ module.exports = message => {
     }, cooldownAmount);
 
     try {
-        command.execute(message, args, message.client);
+        command.run(client,message,args);
     } catch (e) {
         console.error(e);
         message.channel.send("Bu kodda bir hata var galiba.");
