@@ -5,7 +5,7 @@
     "start": "node starserver.js"
   },
   "engines": {
-    "node": "16.x"
+    "node": "15.x"
   },
   "author": "Star Teaö",
   "license": "Apache-2.0",
