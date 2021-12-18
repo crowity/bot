@@ -25,15 +25,15 @@ module.exports = message => {
 
     const timestamp = cooldowns.get(command.help.name);
     const now = Date.now();
-    console.log(now);
     const cooldownAmount = (command.cooldown || 2) * 1000;
 
     if (timestamp.has(message.author.id)) {
         const expirationTime =
             timestamp.get(message.author.id) + cooldownAmount;
         if (expirationTime > now) {
-            const timeLeft = (expirationTime - now) / 1000;
-            const embed = new Discord.MessageEmbed()
+            const timeLeft = (expirationTime - now) / 1000
+            le       
+     const embed = new Discord.MessageEmbed() 
                 .setTitle("Cooldown aşımı tespit edildi")
                 .setDescription(
                     `Bu komudu tekrar kullanabilmek için ${parseInt(
