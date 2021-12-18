@@ -16,13 +16,10 @@ const client = new Discord.Client({ intents: [
         "DIRECT_MESSAGE_TYPING",
     ]});
 const ayarlar = require("./ayarlar.json");
-const chalk = require("chalk");
 const fs = require("fs");
 const moment = require("moment");
 const Jimp = require("jimp");
 const db = require("quick.db");
-
-require("./reply.js");
 const log = message => {
   console.log(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] ${message}`);
 };
