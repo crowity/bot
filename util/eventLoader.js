@@ -1,6 +1,5 @@
+const reqEvent = event => require(`../events/${event}`);
 module.exports = client => {
-
-const load = event => client.on(event, require(`../events/${event}.js`))
-load("message")
-load("ready")
+  client.on("ready", () => reqEvent("ready")(client));
+  client.on("message", reqEvent("message"));
 };
