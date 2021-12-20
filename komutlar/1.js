@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
+const Embed = require("../embed.js")
 exports.run = async (client, message, args) => {
+const embed = Embed
 
-
-message.channel.send("sa")
 
 };
 

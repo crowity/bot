@@ -24,14 +24,6 @@ Embed.setColor(color)
 } else Embed.setColor("RANDOM")
 
 
-
-
-
-
-
-
+return Embed
 
 }
-
-
-
