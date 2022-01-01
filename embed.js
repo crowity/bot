@@ -1,29 +1,17 @@
 const Discord = require("discord.js")
-module.exports = function Embed(Title, Description, fields, color){
+const {MessageEmbed} = Discord;
 
+module.exports = (title, description, color) => {
+    const infoEmbed = new MessageEmbed()
+    .setTitle(title)
+    .setDescription(description)
+    let newColor = ""
+    if(color == 'error') newColor = "#ff0000"
+    else if(color == 'info') newColor = "#1f75ff"
+    else if(color == 'warn') newColor = "#eeff00"
 
+    if(newColor == "") infoEmbed.setColor(color)
+    else infoEmbed.setColor(newColor)
 
-const Embed = new Discord.MessageEmbed()
-
-if(Title){
-Embed.setTitle(Title)
-}
-
-if(Description){
-Embed.setDescription(Description)
-}
-
-if(fields){
-fields.forEach(field => {
-Embed.addField(field.a, field.b)
-})
-}
-
-if(color){
-Embed.setColor(color)
-} else Embed.setColor("RANDOM")
-
-
-return Embed
-
+    return infoEmbed
 }
