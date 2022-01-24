@@ -3,6 +3,7 @@ let prefix = require("../ayarlar.json").prefix
 const cooldowns = new Discord.Collection();
 
 module.exports = message => {
+// Star Coders kanalına abone olmayı unutmayın.
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const client = message.client
     const commandName = args.shift()
@@ -46,6 +47,7 @@ module.exports = message => {
     setTimeout(() => {
         timestamp.delete(message.author.id);
     }, cooldownAmount);
+// Star Coders kanalına abone olmayı unutmayın.
 
     try {
         command.run(client,message,args);

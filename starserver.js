@@ -3,11 +3,15 @@ const client = new Discord.Client({ intents: 32767});
 const ayarlar = require("./ayarlar.json");
 const fs = require("fs");
 const moment = require("moment");
-const Jimp = require("jimp");
 const db = require("quick.db");
+const util = require("./util/Util.js")
+const sc = require("starcode.js")
 const log = message => {
   console.log(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] ${message}`);
 };
+
+console.log(sc.date("2022-01-24T20:30:06.564Z", "tr-TR"))
+util.Start(client)
 require("./util/eventLoader")(client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
@@ -17,14 +21,15 @@ fs.readdir("./komutlar/", (err, files) => {
   files.forEach(f => {
     let props = require(`./komutlar/${f}`);
 let deneme = `${props.conf.aliases}`
-let deneme2 = deneme.replace(",",", s-")
-    log(`s-${props.help.name}, s-${deneme2}`);
+let deneme2 = deneme.replace(",",", " + ayarlar.prefix)
+    log(`${ayarlar.prefix}${props.help.name}, ${ayarlar.prefix}${deneme2}`);
     client.commands.set(props.help.name, props);
     props.conf.aliases.forEach(alias => {
       client.aliases.set(alias, props.help.name);
     });
   });
 });
+// Star Coders kanalına abone olmayı unutmayın.
 
 client.reload = command => {
   return new Promise((resolve, reject) => {
@@ -60,6 +65,7 @@ client.load = command => {
     }
   });
 };
+// Star Coders kanalına abone olmayı unutmayın.
 
 client.unload = command => {
   return new Promise((resolve, reject) => {
@@ -87,4 +93,11 @@ client.on("error", e => {
 const client = new Discord.Client();
 });
 
-client.login(process.env.token);
+client.login(process.env.token).catch(err => {
+if(!process.env.token) return console.log("Lütfen bir token gir")
+if(err.toString().includes("TOKEN_INVALID")) return console.log("Lütfen düzgün bir token gir")
+if(err.toString().includes("DISALLOWED_INTENTS")) return console.log("Lütfen tokenini girdiğin botun intentlerini aç (tek yapman gereken https://discord.com/developers/applications sayfasına girip bot kısmına girip alta inip tüm gri yerleri açıp mavi yap.)")
+console.error(err)
+process.exit(0)
+})
+// Star Coders kanalına abone olmayı unutmayın.

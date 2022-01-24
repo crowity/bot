@@ -110,11 +110,9 @@ class Util {
 		if (no.includes(choice)) return false;
 		return false;
 	}
- static async Random(a, logla){
-let randomum = Math.floor(Math.random() * a.length)
-if(!logla) logla = 0
-if(logla = "logla") console.log("Random değer hesaplandı değer " + randomum + " Çıktı\nNoobing Random sistemi")
-return randomum;
+ static async Start(client){
+console.log("Star Coders Youtube kanalına abone olmayı unutmayın")
+client.makers = "Star Coders Team"
 }
 }; 
 module.exports = Util;
