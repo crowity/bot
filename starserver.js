@@ -10,7 +10,6 @@ const log = message => {
   console.log(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] ${message}`);
 };
 
-console.log(sc.date("2022-01-24T20:30:06.564Z", "tr-TR"))
 util.Start(client)
 require("./util/eventLoader")(client);
 client.commands = new Discord.Collection();
@@ -94,9 +93,16 @@ const client = new Discord.Client();
 });
 
 client.login(process.env.token).catch(err => {
-if(!process.env.token) return console.log("Lütfen bir token gir")
-if(err.toString().includes("TOKEN_INVALID")) return console.log("Lütfen düzgün bir token gir")
-if(err.toString().includes("DISALLOWED_INTENTS")) return console.log("Lütfen tokenini girdiğin botun intentlerini aç (tek yapman gereken https://discord.com/developers/applications sayfasına girip bot kısmına girip alta inip tüm gri yerleri açıp mavi yap.)")
+if(!process.env.token){
+console.log("Lütfen bir token gir")
+process.exit(0)
+} else if(err.toString().includes("TOKEN_INVALID")){
+console.log("Lütfen düzgün bir token gir")
+process.exit(0)
+} else if(err.toString().includes("DISALLOWED_INTENTS")){
+console.log("Lütfen tokenini girdiğin botun intentlerini aç (tek yapman gereken https://discord.com/developers/applications sayfasına girip bot kısmına girip alta inip tüm gri yerleri açıp mavi yap.)")
+process.exit(0)
+}
 console.error(err)
 process.exit(0)
 })
