@@ -10,3 +10,4 @@ if(!interaction.isCommand()) return
         interaction.reply({content: "Komut çalıştırılırken bir hata ortaya çıktı tekrar deneyiniz.", ephemeral: true})
         console.error(err)
     }}
+// Star Coders Youtube kanalına abone olmayı unutmayın

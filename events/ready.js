@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const db = require("quick.db")
 module.exports = client => {
+// Star Coders Youtube kanalına abone olmayı unutmayın
 
   setInterval(() => {
 var aktivite = [    
@@ -18,6 +19,8 @@ console.log(`${client.user.username} başarıyla giriş yaptı.`);
 
 
 }
+// Star Coders Youtube kanalına abone olmayı unutmayın
+
 
 // { type: 'STREAMING' ,  url: 'https://twitch.tv/.' } yayın yapıyor
  //LISTENING = DİNLİYOR
