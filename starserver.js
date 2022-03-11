@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client({ intents: 32767});
+client.setMaxListeners(300) // Fazla komutlu bot yapacaksanız silmeyin.
 const ayarlar = require("./ayarlar.json");
 const fs = require("fs");
 const moment = require("moment");
