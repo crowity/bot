@@ -38,5 +38,16 @@ log("Slash (/) komutları yüklendi.")
 
 })
 
-client.login(process.env.token);
+client.login(process.env.token).catch(err => {
+if(!process.env.token){
+console.log("Lütfen .env dosyasına token giriniz.")
+} else if(err.toString().includes("TOKEN_INVALID")){
+console.log("Girdiğiniz token doğru bir token değil")
+} else if(err.toString().includes("DISALLOWED_INTENTS")){
+console.log("Lütfen tokenini girdiğin botun intentlerini aç (tek yapman gereken https://discord.com/developers/applications sayfasına girip bot kısmına girip alta inip tüm gri yerleri açıp mavi yap.)")
+} else {
+console.error(err)
+}
+process.exit(0)
+})
 
